@@ -1,23 +1,12 @@
 import React from 'react';
 import {Button, Icon, Input, List, Form, Card} from "antd";
+import {useSelector} from "react-redux";
 
-const dummy={
-    isLoggedIn : true,
-    imagePaths : [],
-    mainPosts : [
-        //첫번째 유저의 포스팅
-        {
-            User:{
-                id:1,
-                nickname:'제로초',
-            },
-            content:'첫번 째 게시글',
-            img: 'https://i.pinimg.com/originals/d9/82/f4/d982f4ec7d06f6910539472634e1f9b1.png'
-        }
-    ],
-};
 
 const PostForm = () => {
+
+    const { imagePaths } = useSelector(state=>state.post);
+
     return(
 
         <Form encType="multipart/form-data"> {/* 인코딩 타입 : 파일, 이미지 업로드  */}
@@ -29,7 +18,7 @@ const PostForm = () => {
             </div>
             <div>
                 {/* 이미지 패쓰로 받은것을 매핑  */}
-                {dummy.imagePaths.map((v,i) => {
+                {imagePaths.map((v,i) => {
                     return(
                         <div key={v} style={{ display : 'inline-block'}}>
                             <img src={'//localhost:3000' + v } style={{ width : '200px'}} alt={v}/>

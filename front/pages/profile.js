@@ -1,13 +1,8 @@
 import React from 'react';
 import {Button, Icon, List, Card} from "antd";
 import NicknameEditForm from '../components/NicknameEditForm';
-const dummy = {
-    nickname : '제로초',
-    post : [],
-    followers : [],
-    followings : [],
-    isLoggedIn : false
-};
+import {useSelector} from "react-redux";
+
 const Profile = () => {
     return(
         <div>

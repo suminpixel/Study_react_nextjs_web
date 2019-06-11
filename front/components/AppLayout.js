@@ -3,17 +3,12 @@ import {Menu, Input, Button, Row, Col, Card, Avatar, Checkbox, Form} from 'antd'
 import Link from 'next/link'
 import PropTypes from 'prop-types';
 import LoginForm from './LoginForm';
-import UserPofile from './UserProfile';
-
-const dummy = {
-    nickname : '제로초',
-    post : [],
-    followers : [],
-    followings : [],
-    isLoggedIn : false
-};
+import UserProfile from './UserProfile';
+import {useSelector} from "react-redux";
 
 const AppLayout = ( {children} ) => {
+
+    const { isLoggedIn } = useSelector(state=>state.user);
     return (
         <div>
             <Menu mode="horizontal">
@@ -28,7 +23,7 @@ const AppLayout = ( {children} ) => {
                 {/* xs : 모바일, md: 중간 화면, lg: 큰 화면, sm: 작은화면 */}
                 <Col xs={ 24 } md={ 6 } >
                    {/* 삼항 연산자 : 로그인여부에 따라 다른 div 출력 */}
-                    {dummy.isLoggedIn ? <UserProfile />
+                    {isLoggedIn ? <UserProfile/>
                     :
                     <LoginForm />
                     }
