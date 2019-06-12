@@ -79,6 +79,16 @@ const Signup = () => {
     setTerm(e.target.checked);
   }, []);
 
+
+//함수로 직접 라우팅 하는법! //TODO: 공부를 위한 코드니 나중에 삭제
+  useEffect(()=>{
+    if(me){
+      alert('로그인 후 메인페이지 이동');
+      Router.push('/');
+    }
+  },[me && me.id]);//me.id가 생성되었을때 메인페이지로 이동합니다...
+
+
   return (
     <>
       <Form onSubmit={onSubmit} style={{ padding: 10 }}>

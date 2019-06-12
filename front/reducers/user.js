@@ -23,11 +23,17 @@ export const initialState = {
 
 const dummyUser = {
   nickname: '제로초',
-  Post: [],
+  Post: [], //useEffect 더미데이터로 객체를 받는것은 좋은 습관은 아님.
   Followings: [],
   Followers: [],
   id: 1,
 };
+
+/*
+ 리듀서 삼종 세트
+ REQUEST -  SUCCESS - FAILURE
+*/
+
 export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
 export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE';
@@ -76,7 +82,7 @@ export default (state = initialState, action) => {
         ...state,
         isLoggingIn: false,
         isLoggedIn: true,
-        me: dummyUser,
+        me: dummyUser, //로그인 성공했을때 데이터 받기(api callback)
         isLoading: false,
       };
     }

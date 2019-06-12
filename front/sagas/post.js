@@ -1,6 +1,10 @@
 import { all, fork, takeLatest, put, delay } from 'redux-saga/effects';
 import { ADD_POST_FAILURE, ADD_POST_REQUEST, ADD_POST_SUCCESS } from '../reducers/post';
 import { ADD_COMMENT_FAILURE, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS } from '../reducers/post';
+/*
+ 사가 구성 3종 세트
+ api 콜 함수 - 실행(실제 동작) 함수 - watch 함수
+*/
 
 function addPostAPI() {
 

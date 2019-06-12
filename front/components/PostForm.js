@@ -14,9 +14,10 @@ const PostForm = () => {
   const [text, setText] = useState('');
   const { imagePaths, isAddingPost, postAdded } = useSelector(state => state.post);
 
+  //기존에 입력된 게시글 지우는 함수
   useEffect(() => {
     setText('');
-  }, [postAdded === true]);
+  }, [postAdded === true]); //postAdded 라는 스테이트가 true 가 된 순간 칸이 비워 //success에서 false 가 ㄷehlsek.
 
   const onSubmitForm = useCallback((e) => {
     e.preventDefault();
@@ -28,6 +29,7 @@ const PostForm = () => {
     });
   }, []);
 
+  //유저가 인풋창에 입력한 텍스트 변화할 때
   const onChangeText = useCallback((e) => {
     setText(e.target.value);
   }, []);

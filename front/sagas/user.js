@@ -11,11 +11,16 @@ put: 사가의 dispatch
 fork : 함수를 실행해줌 (비동기호출)
 call : 함수를 실행해줌 (동기 호출 ex)콜백 로직이 중요한 로그인 로직 )
 
+**
+ 사가 구성 3종 세트
+ api 콜 함수 - 실행(실제 동작) 함수 - watch 함수
+**
+
 */
 
 //서버에 로그인 요청
 function loginAPI() {
-  // 서버에 요청을 보내는 부분
+
   return axios.post('/login');
 }
 
@@ -48,7 +53,7 @@ function* signUp() {
   try {
     // yield call(signUpAPI);
     yield delay(2000);
-    throw new Error('에러에러에러');
+    //throw new Error('에러!'); //일부러 에러내기
     yield put({ // put은 dispatch 동일
       type: SIGN_UP_SUCCESS,
     });
