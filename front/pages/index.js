@@ -1,47 +1,31 @@
-import React, {useState, useEffect} from 'react';
-import {Form, Input, Button , Card, Icon, Avatar} from 'antd';
-import PostForm from "../components/PostForm";
-import PostCard from "../components/PostCard";
-import {useDispatch, useSelector} from "react-redux";
-import {LOG_IN, logoutAction} from "../reducers/user";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import PostForm from '../components/PostForm';
+import PostCard from '../components/PostCard';
 
+/*
 
+메인페이지
+스토어 스테이트 : 스토어에서 포스트 정보, 유저 정보, 유저 로그인 정보를 가져온다.
+스토어 스테이트에 상태에 따라 포스팅리스트 등을 가져와 뿌린다.
+
+*/
 const Home = () => {
 
-    //리덕스 스테이트가 가지고 있는 데이터 소환하여 state로
-    // const { isLoggedIn } = useSelector(state => state.user.isLoggedIn); -> 잘게 쪼개
-    const { mainPosts } = useSelector(state => state.post);
+  //리덕스 스토어 스테이트가 가지고 있는 데이터 소환하여 변수화
+  const { isLoggedIn } = useSelector(state => state.user);
+  const { mainPosts } = useSelector(state => state.post);
 
-    //액션을 리덕스 훅스 문법으로 디스팻치하는 방법
-    const dispatch = useDispatch();
-    //스테이트 가져옴
-    const {isLoggedIn, user} = useSelector (state => state.user); //리덕스 스토어 (index.js)전체스테이트에서 유저를 가져와라
-    console.log(user);
-    useEffect(()=> {
-            dispatch(
-                {
-                    type : LOG_IN,
-                    data:{
-                        nickname:'홍길동'
-                    },
-                }
-            );
-            dispatch(logoutAction);
-
-        }, []);
-    return (
-        <div>
-            {user ? <div>로그인 했습니다 {user.nickname}</div> : <div>로그아웃 했습니다. </div>}
-            {/* 포스팅 입력 폼  */}
-            {isLoggedIn && <PostForm/>}
-            {/* 메인 포스트 매핑  */}
-            {mainPosts.map((c) => {
-                return(
-                    <PostCard key={c} post={c}/>
-                )
-          })}
-        </div>
-    );
+  return (
+    <div>
+      {isLoggedIn && <PostForm />}
+      {mainPosts.map((c) => {
+        return (
+          <PostCard key={c} post={c} />
+        );
+      })}
+    </div>
+  );
 };
 
 export default Home;

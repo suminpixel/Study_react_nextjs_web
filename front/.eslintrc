@@ -17,5 +17,9 @@
   "plugins": [//추가 프레임워크 플러그인 세팅
     "import",
     "react-hooks"
-  ]
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
 }
