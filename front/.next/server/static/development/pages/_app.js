@@ -1727,12 +1727,13 @@ var Signup = function Signup() {
     return dispatch({
       type: _reducers_user__WEBPACK_IMPORTED_MODULE_6__["SIGN_UP_REQUEST"],
       data: {
-        id: id,
+        //해당 데이터를 서버로 보냅니다.
+        usrId: id,
         password: password,
-        nick: nick
+        nickname: nick
       }
     });
-  }, [password, passwordCheck, term]); //input 창 value가 사용자에 의해 변경(입력) 될 때마다 실행되는 매서드 (스테이트 변경)
+  }, [id, nick, password, passwordCheck, term]); //input 창 value가 사용자에 의해 변경(입력) 될 때마다 실행되는 매서드 (스테이트 변경)
 
   var onChangePasswordCheck = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(function (e) {
     setPasswordError(e.target.value !== password);
@@ -2639,7 +2640,7 @@ function loginAPI() {
   return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/login');
 }
 
-function login() {
+function login(action) {
   return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function login$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -2695,24 +2696,24 @@ function watchLogin() {
   }, _marked2);
 }
 
-function signUpAPI() {
+function signUpAPI(signUpData) {
   // 서버에 요청을 보내는 부분
-  return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/login');
+  return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('//localhost:3065/api/user/', signUpData); //api 주소
 }
 
-function signUp() {
+function signUp(action) {
   return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function signUp$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
           _context3.prev = 0;
           _context3.next = 3;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["delay"])(2000);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(signUpAPI, action.data);
 
         case 3:
           _context3.next = 5;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
-            // put은 dispatch 동일
+            // put = dispatch
             type: _reducers_user__WEBPACK_IMPORTED_MODULE_3__["SIGN_UP_SUCCESS"]
           });
 

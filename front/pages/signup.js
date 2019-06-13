@@ -60,13 +60,13 @@ const Signup = () => {
     }
     return dispatch({
       type: SIGN_UP_REQUEST,
-      data: {
-        id,
+      data: { //해당 데이터를 서버로 보냅니다.
+        usrId : id,
         password,
-        nick,
+        nickname : nick,
       },
     });
-  }, [password, passwordCheck, term]);
+  }, [id, nick, password, passwordCheck, term]);
 
   //input 창 value가 사용자에 의해 변경(입력) 될 때마다 실행되는 매서드 (스테이트 변경)
   const onChangePasswordCheck = useCallback((e) => {

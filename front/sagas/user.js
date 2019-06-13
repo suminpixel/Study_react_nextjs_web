@@ -24,7 +24,7 @@ function loginAPI() {
   return axios.post('/login');
 }
 
-function* login() {
+function* login(action) {
   try {
     // yield call(loginAPI);
     yield delay(2000);
@@ -44,17 +44,17 @@ function* watchLogin() {
   yield takeEvery(LOG_IN_REQUEST, login);
 }
 
-function signUpAPI() {
+function signUpAPI(signUpData) {
   // 서버에 요청을 보내는 부분
-  return axios.post('/login');
+  return axios.post('//localhost:3065/api/user/', signUpData); //api 주소
 }
 
-function* signUp() {
+function* signUp(action) {
   try {
     // yield call(signUpAPI);
-    yield delay(2000);
+    yield call(signUpAPI, action.data); //sinUpAPI함수에 action.data를 인자로 넣는다.
     //throw new Error('에러!'); //일부러 에러내기
-    yield put({ // put은 dispatch 동일
+    yield put({ // put = dispatch
       type: SIGN_UP_SUCCESS,
     });
   } catch (e) { // loginAPI 실패

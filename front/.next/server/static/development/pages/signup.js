@@ -464,12 +464,13 @@ var Signup = function Signup() {
     return dispatch({
       type: _reducers_user__WEBPACK_IMPORTED_MODULE_6__["SIGN_UP_REQUEST"],
       data: {
-        id: id,
+        //해당 데이터를 서버로 보냅니다.
+        usrId: id,
         password: password,
-        nick: nick
+        nickname: nick
       }
     });
-  }, [password, passwordCheck, term]); //input 창 value가 사용자에 의해 변경(입력) 될 때마다 실행되는 매서드 (스테이트 변경)
+  }, [id, nick, password, passwordCheck, term]); //input 창 value가 사용자에 의해 변경(입력) 될 때마다 실행되는 매서드 (스테이트 변경)
 
   var onChangePasswordCheck = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(function (e) {
     setPasswordError(e.target.value !== password);
