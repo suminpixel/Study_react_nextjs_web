@@ -1,6 +1,19 @@
 import { all, fork, takeLatest, takeEvery, call, put, take, delay } from 'redux-saga/effects';
 import axios from 'axios';
-import { LOG_IN_REQUEST, LOG_IN_SUCCESS, LOG_IN_FAILURE, SIGN_UP_REQUEST, SIGN_UP_FAILURE, SIGN_UP_SUCCESS } from '../reducers/user';
+import {
+  LOAD_USER_FAILURE,
+  LOAD_USER_REQUEST,
+  LOAD_USER_SUCCESS,
+  LOG_IN_FAILURE,
+  LOG_IN_REQUEST,
+  LOG_IN_SUCCESS,
+  LOG_OUT_FAILURE,
+  LOG_OUT_REQUEST,
+  LOG_OUT_SUCCESS,
+  SIGN_UP_FAILURE,
+  SIGN_UP_REQUEST,
+  SIGN_UP_SUCCESS,
+} from '../reducers/user';
 /*
 
 -사가 yield 이펙트 정리-
@@ -46,12 +59,17 @@ function* watchLogin() {
 
 function signUpAPI(signUpData) {
   // 서버에 요청을 보내는 부분
-  return axios.post('//localhost:3065/api/user/', signUpData); //api 주소
+  console.log("saga -callapi : " + typeof(signUpData)); // 데이터타입 object 반환
+  console.log("saga -callapi : " + JSON.stringify(signUpData)); //스트링 반환
+  return axios.post('http://localhost:3065/api/user/', signUpData); //api 주소
 }
 
 function* signUp(action) {
+
   try {
     // yield call(signUpAPI);
+    console.log("saga -signup action : " + action.type); //타입반환
+    console.log("saga -signup action : " + action.data);
     yield call(signUpAPI, action.data); //sinUpAPI함수에 action.data를 인자로 넣는다.
     //throw new Error('에러!'); //일부러 에러내기
     yield put({ // put = dispatch
@@ -67,6 +85,7 @@ function* signUp(action) {
 }
 
 function* watchSignUp() {
+
   yield takeEvery(SIGN_UP_REQUEST, signUp);
 }
 

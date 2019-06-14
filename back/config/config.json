@@ -1,27 +1,24 @@
 {
   "development": {
     "username": "root",
-    "port": "3065",
-    "password": "nodebird",
-    "database": "nodebird",
+    "password": "0000",
+    "database": "snuper_test",
     "host": "localhost",
     "dialect": "mysql",
     "operatorsAliases": false
   },
   "test": {
     "username": "root",
-    "port": "3065",
-    "password": "nodebird",
-    "database": "nodebird",
+    "password": "0000",
+    "database": "snuper_test",
     "host": "localhost",
     "dialect": "mysql",
     "operatorsAliases": false
   },
   "production": {
     "username": "root",
-    "port": "3065",
-    "password": "nodebird",
-    "database": "nodebird",
+    "password": "0000",
+    "database": "snuper_test",
     "host": "localhost",
     "dialect": "mysql",
     "operatorsAliases": false

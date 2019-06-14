@@ -31,6 +31,8 @@ export const useInput = (initValue = null) => {
 };
 
 const Signup = () => {
+  const dispatch = useDispatch();
+
   const [passwordCheck, setPasswordCheck] = useState('');
   const [term, setTerm] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -39,18 +41,11 @@ const Signup = () => {
   const [id, onChangeId] = useInput('');
   const [nick, onChangeNick] = useInput('');
   const [password, onChangePassword] = useInput('');
-  const dispatch = useDispatch();
   const { isSigningUp, me } = useSelector(state => state.user);
-
-  useEffect(() => {
-    if (me) {
-      alert('로그인했으니 메인페이지로 이동합니다.');
-      Router.push('/');
-    }
-  }, [me && me.id]);
 
   const onSubmit = useCallback((e) => {
     e.preventDefault();//실제 제출되지않게
+
     //검증로직
     if (password !== passwordCheck) {
       return setPasswordError(true);
@@ -58,12 +53,13 @@ const Signup = () => {
     if (!term) {
       return setTermError(true);
     }
+    console.log("dispatch : " + id + password + nick);
     return dispatch({
       type: SIGN_UP_REQUEST,
-      data: { //해당 데이터를 서버로 보냅니다.
-        usrId : id,
-        password,
-        nickname : nick,
+      data: {
+        userId: id,
+        password : password,
+        nickname: nick,
       },
     });
   }, [id, nick, password, passwordCheck, term]);
@@ -85,8 +81,8 @@ const Signup = () => {
     if(me){
       alert('로그인 후 메인페이지 이동');
       Router.push('/');
-    }
-  },[me && me.id]);//me.id가 생성되었을때 메인페이지로 이동합니다...
+
+  }},[me && me.id]);//me.id가 생성되었을때 메인페이지로 이동합니다...
 
 
   return (

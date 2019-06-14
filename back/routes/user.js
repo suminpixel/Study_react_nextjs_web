@@ -11,15 +11,16 @@ api 라우터 관련 문서
 api란? 다른 서비스가 내 서비스의 기능을 실행할 수 있도록 열어준 창구
 
 */
-
+//로그인 라우터 //TODO: 깃헙에서 불러오기
 
 //사용자 등록(회원가입) 라우터
-router.post('/', async (req, res, next) => {
+router.post('/', async (req, res) => {
     //scynce 비동기 처리를 위해 try catch 문 사용 내 정보 가져오는
     try{
+        //console.log("라우터가 받은 req :" + req); //해당 콘솔 코드 때문에 아래 코드가 동작 안함
         const exUser = await db.User.findOne({
             where: {
-                userId: req.body.userId, //기존에 유저 아이디가 존재하는지 체크
+                userId: req.body.userId, //유저아이디 중복체크
             }
         });
         if(exUser){
@@ -46,11 +47,9 @@ router.post('/', async (req, res, next) => {
         return res.status(404).send(e);
     }
 });
-router.get('/', (req, res) => {
-    //사용자 정보 얻어오는
-});
+
 router.get('/:id', (req, res) => {
-    //남의 정보 가져오는 ex)  /api/user/3
+    //남의 정보 가져오는 ex)  /api/user/:3
 
 });
 router.post('/logout', (req, res) => {
@@ -70,6 +69,12 @@ router.delete('/:id/follower', (req, res) => {
 });
 router.post('/:id/posts', (req, res) => {
     // n번 유저의 게시글 가져오기
+});
+
+
+router.get('/test', (req, res) => {
+    // n번 유저의 게시글 가져오기
+    return res.json("우와!");
 });
 
 // 라우터 : app.post('/api/post/images',

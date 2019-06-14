@@ -7,6 +7,14 @@ initialState 란?
 해당 스테이트 설계가 가장 중요
 
 */
+const dummyUser = {
+  nickname: '제로초',
+  Post: [], //useEffect 더미데이터로 객체를 받는것은 좋은 습관은 아님.
+  Followings: [],
+  Followers: [],
+  id: 1,
+};
+
 export const initialState = {
   isLoggedIn: false, // 로그인 여부
   isLoggingOut: false, // 로그아웃 시도중
@@ -19,14 +27,6 @@ export const initialState = {
   followingList: [], // 팔로잉 리스트
   followerList: [], // 팔로워 리스트
   userInfo: null, // 남의 정보
-};
-
-const dummyUser = {
-  nickname: '제로초',
-  Post: [], //useEffect 더미데이터로 객체를 받는것은 좋은 습관은 아님.
-  Followings: [],
-  Followers: [],
-  id: 1,
 };
 
 /*
