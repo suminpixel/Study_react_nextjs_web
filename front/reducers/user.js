@@ -70,6 +70,9 @@ export const ADD_POST_TO_ME = 'ADD_POST_TO_ME';
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    /*
+    로그
+    */
     case LOG_IN_REQUEST: {
       return {
         ...state,
@@ -82,7 +85,7 @@ export default (state = initialState, action) => {
         ...state,
         isLoggingIn: false,
         isLoggedIn: true,
-        me: dummyUser, //로그인 성공했을때 데이터 받기(api callback)
+        me: action.data, //로그인 성공했을때 데이터 받기(api callback)
         isLoading: false,
       };
     }
@@ -95,13 +98,35 @@ export default (state = initialState, action) => {
         me: null,
       };
     }
+    /*
+    로그아웃
+    */
     case LOG_OUT_REQUEST: {
       return {
         ...state,
-        isLoggedIn: false,
+        isLoggingOut: true,
+        isLoggedOut:false,
+      };
+    }
+    case LOG_OUT_SUCCESS: {
+      return {
+        ...state,
+        isLoggingOut: false,
+        isLoggedOut:true,
         me: null,
       };
     }
+    case LOG_OUT_FAILURE: {
+      return {
+        ...state,
+        isLoggingOut: false,
+        isLoggedOut:false,
+        logOutErrorReason: action.error,
+      };
+    }
+    /*
+    회원가입
+    */
     case SIGN_UP_REQUEST: {
       return {
         ...state,
@@ -122,6 +147,27 @@ export default (state = initialState, action) => {
         ...state,
         isSigningUp: false,
         signUpErrorReason: action.error,
+      };
+    }
+    /*
+    유저 정보 받기
+    */
+    case LOAD_USER_REQUEST: {
+      return {
+        ...state,
+
+      };
+    }
+    case LOAD_USER_SUCCESS: {
+      return {
+        ...state,
+        me:action.data,
+      };
+    }
+    case LOAD_USER_FAILURE: {
+      return {
+        ...state,
+
       };
     }
     default: {

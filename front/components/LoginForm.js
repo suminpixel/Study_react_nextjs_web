@@ -22,10 +22,12 @@ const LoginForm = () => {
 
   const onSubmitForm = useCallback((e) => {
     e.preventDefault();
+    console.log('login form dispath : '+ id );
     dispatch({
       type: LOG_IN_REQUEST,
+        //서버가 받아야하는 이름과 동일하게 맞춰 줄 것.
       data: {
-        id, password,
+        userId : id, password,
       },
     });
   }, [id, password]);

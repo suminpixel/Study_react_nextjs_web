@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useCallback , useEffect } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { Col, Input, Menu, Row } from 'antd';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import LoginForm from './LoginForm';
 import UserProfile from './UserProfile';
+import { LOAD_USER_REQUEST } from '../reducers/user';
 /*
 
 네비게이션과 바디 영역을 나눠주는 메인 레이아웃
@@ -13,8 +14,18 @@ import UserProfile from './UserProfile';
 
 */
 
+
 const AppLayout = ({ children }) => {
-  const { isLoggedIn } = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  const { isLoggedIn, me} = useSelector(state => state.user);
+  console.log('현재 접속 유저 (state.user): ' + me); //유저정보 있음
+  useEffect(()=>{
+    if(!me){ //유저 정보가 있는지 체크
+      dispatch({
+        type: LOAD_USER_REQUEST,
+      });
+    }
+  },[]);
   return (
     <div>
       <Menu mode="horizontal">
@@ -26,7 +37,7 @@ const AppLayout = ({ children }) => {
       </Menu>
       <Row gutter={8}>
         <Col xs={24} md={6}>
-          {isLoggedIn
+          {me
             ? <UserProfile />
             : <LoginForm />}
         </Col>
