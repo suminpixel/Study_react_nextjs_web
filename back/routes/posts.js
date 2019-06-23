@@ -3,6 +3,7 @@ const router = express.Router(); //express 에서 제공하는 라우터 정리 
 
 router.get('/', (req, res) => {
     // 포스트'들' 가져오기
+
 });
 
 // 라우터 : app.post('/api/post/images',

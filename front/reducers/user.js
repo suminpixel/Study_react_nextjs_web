@@ -7,13 +7,6 @@ initialState 란?
 해당 스테이트 설계가 가장 중요
 
 */
-const dummyUser = {
-  nickname: '제로초',
-  Post: [], //useEffect 더미데이터로 객체를 받는것은 좋은 습관은 아님.
-  Followings: [],
-  Followers: [],
-  id: 1,
-};
 
 export const initialState = {
   isLoggedIn: false, // 로그인 여부
@@ -71,7 +64,7 @@ export const ADD_POST_TO_ME = 'ADD_POST_TO_ME';
 export default (state = initialState, action) => {
   switch (action.type) {
     /*
-    로그
+    로그인 
     */
     case LOG_IN_REQUEST: {
       return {

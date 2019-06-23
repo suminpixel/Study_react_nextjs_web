@@ -516,10 +516,7 @@ var UserProfile = function UserProfile() {
   }, []);
   return (//TODO : 유저정보 받은후 다시 넣을것
     react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_0__["Card"], {
-      actions: [//<div key="twit">짹짹<br />{me.Post.length}</div>,
-        //<div key="following">팔로잉<br />{me.Followings.length}</div>,
-        //<div key="follower">팔로워<br />{me.Followers.length}</div>,
-      ],
+      actions: [],
       __source: {
         fileName: _jsxFileName,
         lineNumber: 26
@@ -529,21 +526,21 @@ var UserProfile = function UserProfile() {
       avatar: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_0__["Avatar"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34
+          lineNumber: 41
         },
         __self: this
       }, me.nickname[0]),
       title: me.nickname,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 33
+        lineNumber: 40
       },
       __self: this
     }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_0__["Button"], {
       onClick: onLogout,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 37
+        lineNumber: 44
       },
       __self: this
     }, "\uB85C\uADF8\uC544\uC6C3"))
@@ -2204,14 +2201,6 @@ initialState 란?
 해당 스테이트 설계가 가장 중요
 
 */
-var dummyUser = {
-  nickname: '제로초',
-  Post: [],
-  //useEffect 더미데이터로 객체를 받는것은 좋은 습관은 아님.
-  Followings: [],
-  Followers: [],
-  id: 1
-};
 var initialState = {
   isLoggedIn: false,
   // 로그인 여부
@@ -2275,7 +2264,7 @@ var ADD_POST_TO_ME = 'ADD_POST_TO_ME';
 
   switch (action.type) {
     /*
-    로그
+    로그인 
     */
     case LOG_IN_REQUEST:
       {
@@ -2957,26 +2946,27 @@ function loadUser(action) {
           });
 
         case 7:
-          _context8.next = 14;
+          console.log(_result2.data);
+          _context8.next = 15;
           break;
 
-        case 9:
-          _context8.prev = 9;
+        case 10:
+          _context8.prev = 10;
           _context8.t0 = _context8["catch"](0);
           // loginAPI 실패
           console.error(_context8.t0);
-          _context8.next = 14;
+          _context8.next = 15;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_2__["put"])({
             type: _reducers_user__WEBPACK_IMPORTED_MODULE_4__["LOAD_USER_FAILURE"],
             error: _context8.t0
           });
 
-        case 14:
+        case 15:
         case "end":
           return _context8.stop();
       }
     }
-  }, _marked8, null, [[0, 9]]);
+  }, _marked8, null, [[0, 10]]);
 }
 
 function loadUserAPI() {

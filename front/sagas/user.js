@@ -150,6 +150,7 @@ function* loadUser(action) {
       type: LOAD_USER_SUCCESS,
       data: result.data
     });
+    console.log(result.data);
   } catch (e) { // loginAPI 실패
     console.error(e);
     yield put({
