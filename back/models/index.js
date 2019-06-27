@@ -4,7 +4,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config')[env];
 const db = {};
 
-
+//시퀄라이즈 : sql문을 쓰지 않고 디비를 컨트롤
 //시퀄라이즈 config 세팅 (config.js)
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
 

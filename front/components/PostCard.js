@@ -6,7 +6,7 @@ import { ADD_COMMENT_REQUEST } from '../reducers/post';
 /*
 
 포스트 카드 1개 포맷
-스토어 스테이트 : postInfo (userid, img, nickname, content) <-부모 컴포로 부터 받음
+스토어 스테이트 : postInfo (userid, img, nickname, content...) <-부모 컴포로 부터 받음
 자체 스테이트 : 0
 
 */
@@ -59,6 +59,7 @@ const PostCard = ({ post }) => {
           avatar={<Avatar>{post.User.nickname[0]}</Avatar>}
           title={post.User.nickname}
           description={post.content}
+
         />
       </Card>
       {commentFormOpened && (

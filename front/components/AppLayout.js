@@ -18,13 +18,13 @@ import { LOAD_USER_REQUEST } from '../reducers/user';
 const AppLayout = ({ children }) => {
   const dispatch = useDispatch();
   const { isLoggedIn, me} = useSelector(state => state.user);
-  console.log('현재 접속 유저 (state.user): ' + me); //유저정보 있음
   useEffect(()=>{
     if(!me){ //유저 정보가 있는지 체크
       dispatch({
         type: LOAD_USER_REQUEST,
       });
     }
+    console.log('현재 접속 유저 :' + me); //유저정보 없음
   },[]);
   return (
     <div>

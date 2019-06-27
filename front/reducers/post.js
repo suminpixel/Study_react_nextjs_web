@@ -106,7 +106,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAddingPost: false,
-        mainPosts: [dummyPost, ...state.mainPosts], //기존 메인포스트에 더미 포스트 추가
+        mainPosts: [action.data, ...state.mainPosts], //기존 메인포스트에 더미 포스트 추가
         postAdded: true,
       };
     }

@@ -21,16 +21,18 @@ const PostForm = () => {
 
   const onSubmitForm = useCallback((e) => {
     e.preventDefault();
+    console.log('포스팅 버튼 클릭 :' + text); //유저정보 없음
     dispatch({
       type: ADD_POST_REQUEST,
       data: {
-        text,
+        content: text.trim(),
       },
     });
-  }, []);
+  }, [text]);
 
   //유저가 인풋창에 입력한 텍스트 변화할 때
   const onChangeText = useCallback((e) => {
+    console.log('포스팅 입력 :' + e.target.value); //유저정보 없음
     setText(e.target.value);
   }, []);
 
