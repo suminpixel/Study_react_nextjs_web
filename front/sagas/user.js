@@ -77,7 +77,7 @@ function signUpAPI(signUpData) {
   // 서버에 요청을 보내는 부분
   console.log("saga -callapi : " + typeof(signUpData)); // 데이터타입 object 반환
   console.log("saga -callapi : " + JSON.stringify(signUpData)); //스트링 반환
-  return axios.post('//localhost:3065/api/user/', signUpData); //api 주소
+  return axios.post('http://localhost:3065/api/user/', signUpData); //api 주소
 }
 
 function* signUp(action) {
@@ -161,7 +161,7 @@ function* loadUser(action) {
 }
 
 function loadUserAPI() {
-    return axios.get('//localhost:3065/api/user/', {
+    return axios.get('http://localhost:3065/api/user/', {
         withCredentials: true // 쿠키를 받기 위
     }); //get은 데이터를 보내지 않음
 }

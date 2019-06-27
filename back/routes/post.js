@@ -30,15 +30,16 @@ router.post('/', async (req, res, next) => {
             console.log(result);
             //post db에 Hasgtaags db 연결해서 만들어줌 (시컬라이즈 기능)
             //add(생성) set(수정) remove(삭제) get(가져오기)
+            console.log(result);
             await newPost.addHashtags(result.map(r => r[0]));
-            const fullPost = await db.Post.findOne({
-                where: { id: newPost.id },
-                include: [{
-                    model: db.User,
-                }],
-            });
-            res.json(fullPost);
         }
+        const fullPost = await db.Post.findOne({
+            where: { id: newPost.id },
+            include: [{
+                model: db.User,
+            }],
+        });
+        res.json(fullPost);
         res.json(newPost)
     }catch (e) {
         console.error(e);

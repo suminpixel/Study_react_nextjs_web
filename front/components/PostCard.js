@@ -42,6 +42,7 @@ const PostCard = ({ post }) => {
     setCommentText(e.target.value);
   }, []);
 
+
   return (
     <div>
       <Card
@@ -55,9 +56,10 @@ const PostCard = ({ post }) => {
         ]}
         extra={<Button>팔로우</Button>}
       >
+
         <Card.Meta
-          avatar={<Avatar>{post.User.nickname[0]}</Avatar>}
-          title={post.User.nickname}
+          avatar={<Avatar>{post.content[0]}</Avatar>}
+          title={post.content}
           description={post.content}
 
         />
